@@ -1,0 +1,8 @@
+PySide6
+requests
+sqlalchemy
+pandas
+markdown
+
+#requirements for LangChain on Vertex AI
+google-cloud-aiplatform[reasoningengine,langchain]
