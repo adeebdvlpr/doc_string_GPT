@@ -4,5 +4,9 @@ sqlalchemy
 pandas
 markdown
 
-#requirements for LangChain on Vertex AI
+#requirements for LangChain on Vertex AI --> MAY NOT BE NEEDED FOR THIS PROJECT
 google-cloud-aiplatform[reasoningengine,langchain]
+
+#Requirments for using crew and google Gemini Genrative AI model
+langchain-google-genai
+crewai
