@@ -11,7 +11,7 @@ load_dotenv()
 
 class DocumentationGeneratingAgents:
     def __init__(self):
-        os.environ["GOOGLE_API_KEY"]="AIzaSyA-fgCMFDMI5LYdJNXtXG0r6yMaMi3UIDk"
+        os.environ["GOOGLE_API_KEY"]="replace key"
 
         # Set gemini pro as llm
         self.llm = ChatGoogleGenerativeAI(
