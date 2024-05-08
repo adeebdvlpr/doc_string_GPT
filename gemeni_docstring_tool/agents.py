@@ -4,18 +4,22 @@ from textwrap import dedent
 from langchain_google_genai import ChatGoogleGenerativeAI
 from crewai import Agent
 
-load_dotenv()
+# Specify the path to the .env file
+dotenv_path = os.path.join(os.path.dirname(__file__), 'secrets', '.env')
+load_dotenv(dotenv_path)
 
 class DocumentationGeneratingAgents:
+
     def __init__(self):
-        os.environ["GOOGLE_API_KEY"]="replace key"
+        # Load API key from .env file
+        self.google_api_key = os.getenv("GOOGLE_API_KEY")
 
         # Set gemini pro as llm
         self.llm = ChatGoogleGenerativeAI(
             model="gemini-pro", 
             verbose=True, 
             temperature=0.9, 
-            google_api_key=os.environ["GOOGLE_API_KEY"]
+            google_api_key=self.google_api_key
         )
 
 #This agent is not needed for the current task, but may be needed in the future

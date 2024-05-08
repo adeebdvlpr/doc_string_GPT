@@ -1,12 +1,10 @@
 import logging
-
 from textwrap import dedent
 import re
 from multiprocessing import Pool, cpu_count
 
 from Capabilities.file_reading_tool import FileManagementTools
 from Capabilities.file_collecting import collect_ts_files, queue_ts_files
-
 
 from crewai import Crew
 from tasks import AgentTasks
