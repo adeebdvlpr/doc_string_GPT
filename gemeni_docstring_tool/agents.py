@@ -2,12 +2,9 @@ from dotenv import load_dotenv
 import os
 from textwrap import dedent
 from langchain_google_genai import ChatGoogleGenerativeAI
-from crewai import Agent, Task, Crew, Process
+from crewai import Agent
 
 load_dotenv()
-
-
-
 
 class DocumentationGeneratingAgents:
     def __init__(self):
@@ -21,23 +18,23 @@ class DocumentationGeneratingAgents:
             google_api_key=os.environ["GOOGLE_API_KEY"]
         )
 
+#This agent is not needed for the current task, but may be needed in the future
+# Set up the agents to perform file loading / writing agents
+    # def file_loader_agent(self):
+    #     return Agent(
+    #         role='File Loader',
+    #         goal='Read a code file from a specified file path, take the returned contents and transform them into a text block format return, pass it to the next agent for processing',
+    #         backstory=dedent("""\
+    #             You are a File Loader responsible for loading the code file from the specified file path.
+    #             Your role is crucial in ensuring that the code file is correctly loaded and passed to the next agent for processing.
+    #             As a diligent professional, you understand the importance of accurately handling the code file and ensuring its integrity throughout the documentation generation process.
+    #             Your expertise in file management and data handling allows you to efficiently retrieve the code file and prepare it for further processing."""),
+    #         allow_delegation=False,
+    #         llm=self.llm,
+    #         verbose=True
+    #     )
 
-    # Set up the agents to perform file loading / writing agents
-    def file_loader_agent(self):
-        return Agent(
-            role='File Loader',
-            goal='Read a code file from a specified file path, take the returned contents and transform them into a text block format return, pass it to the next agent for processing',
-            backstory=dedent("""\
-                You are a File Loader responsible for loading the code file from the specified file path.
-                Your role is crucial in ensuring that the code file is correctly loaded and passed to the next agent for processing.
-                As a diligent professional, you understand the importance of accurately handling the code file and ensuring its integrity throughout the documentation generation process.
-                Your expertise in file management and data handling allows you to efficiently retrieve the code file and prepare it for further processing."""),
-            allow_delegation=False,
-            llm=self.llm,
-            verbose=True
-        )
-
-    # Set up the agents to perform the documentation task
+#Agent to perform the initial documentation task
     def senior_engineer_agent(self):
         return Agent(
             role='Senior Software Engineer',
@@ -51,6 +48,7 @@ class DocumentationGeneratingAgents:
             verbose=True
         )
 
+#Agent to perform the review/missing documentation task
     def qa_engineer_agent(self):
         return Agent(
             role='Software Quality Control Engineer',
@@ -65,7 +63,7 @@ class DocumentationGeneratingAgents:
             llm=self.llm,
             verbose=True
         )
-    
+#Agent to perform the final evaluation of documentation task result. Will focus on ensuring that the code remains functional
     def chief_qa_engineer_agent(self):
         return Agent(
             role='Chief Software Quality Control Engineer',
@@ -81,6 +79,7 @@ class DocumentationGeneratingAgents:
             verbose=True
         )
     
+# Agent not being used currently, but may be needed in the future
 # will i need somrthing that extracts the file path from the original file input and passes the file path to the agent?
     def llm_response_handler_agent(self):
         return Agent(

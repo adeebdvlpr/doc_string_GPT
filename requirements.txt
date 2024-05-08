@@ -10,3 +10,4 @@ google-cloud-aiplatform[reasoningengine,langchain]
 #Requirments for using crew and google Gemini Genrative AI model
 langchain-google-genai
 crewai
+crewai[tools]
