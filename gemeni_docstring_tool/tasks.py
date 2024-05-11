@@ -13,7 +13,8 @@ class AgentTasks:
                 f"""
                 **Objective:**
                 Your task is to Add comprehensive docstring comments to the provided TypeScript or pure JavaScript file: {code_to_modify}
-                You will return the file with the complete docstring comments as required for the file. 
+                You will return the file with the complete docstring comments as required for the file.
+                You will not change any of the code that is already present in the file. 
                 **Instructions:**
                 1. **Analyze the File:**
                 Carefully examine the provided NestJS file to understand its purpose, functionality, and components (classes, interfaces, functions, etc.).
@@ -75,6 +76,7 @@ class AgentTasks:
                 If needed identify any missing or incorrect JSDoc comments and make necessary corrections or additions to accurately reflect the functionality of the code.
                 Validate that the documentation enhances code clarity and maintainability by providing clear and concise descriptions of each function, class, file, etc. 
                 Make sure the @example tag is always used to demonstrate how each function is used, regardless if it is a async function or not.
+                You will not change any of the functional code that is already present in the file.
                 These are the instructions:
 
                 1. **File-Level Comments:**
